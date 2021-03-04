@@ -1,0 +1,24 @@
+<div>
+    <div class="header">
+        <div class="header-text">Apps Market</div>
+    </div>
+    <div>
+        <mat-card class="nopadding">
+            <mat-action-list class="thin">
+                <button *ngFor="let app of apps" mat-list-item class="btn" (click)="install(app)">
+                    <div class="flex1" *ngIf="app.inprogress!=true">
+                        <div class="left">
+                            <img [src]="'assets/images/' + app.icon + '.png'" width="48" height="48">
+                        </div>
+                        <div class="flex">
+                            <span>{{app.label}}</span>
+                            <mat-card-subtitle class="light">{{app.description}}</mat-card-subtitle>
+                        </div>
+                    </div>
+                </button>
+            </mat-action-list>
+        </mat-card>
+    </div>
+
+    <div *ngIf="!apps || apps.length === 0">Currently no further apps available</div>
+</div>

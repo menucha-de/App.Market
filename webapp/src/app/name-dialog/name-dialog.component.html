@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Container Name</h2>
+
+<mat-dialog-content [formGroup]="form">
+  
+    <mat-form-field>
+        <input matInput type="text"
+                placeholder="Container Name"
+               formControlName="name">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end" fxLayoutGap="5px">
+    <button class="mat-raised-button"(click)="close()">Cancel</button>
+    <button class="mat-raised-button ok"(click)="save()">OK</button>
+</mat-dialog-actions>

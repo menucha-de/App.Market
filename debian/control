@@ -1,0 +1,8 @@
+Source: market
+Maintainer: peraMIC <opensource@peraMIC.io>
+Build-Depends: debhelper, golang:native, git, crossbuild-essential-armhf:all, libc6
+
+Package: market
+Architecture: any
+Depends: ${shlibs:Depends}, swagger-ui
+Description: Market App Service

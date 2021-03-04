@@ -1,0 +1,75 @@
+<div class="content" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="left">
+  <button mat-button class="btn" [matMenuTriggerFor]="menu">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <i class="material-icons"> add </i>
+        <span>install</span>
+      </div>
+    </button>
+
+    <button *ngFor="let app of apps$" mat-button [ngClass]="(app.state == 'STARTED')?'btn btn-hover btn-focus':'btn btn-stopped'" (click)="app.state == 'STARTED' && showApp(app.name)" [title]="app.description"
+      (contextmenu)="onContextMenu($event,app)" id={{app.label}}>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <img [src]="'assets/images/' + app.icon + '.png'" width="48" height="48">
+        <span>{{ app.label }}</span>
+      </div>
+    </button>
+  </div>
+<div  #xx style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x"
+  [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
+</div>
+
+<mat-menu #contextMenu="matMenu" class="thin">
+  <ng-template matMenuContent let-item="app">
+    <div fxLayout="column">
+      <button *ngIf="item.state == 'STOPPED'" class="btnm" (click)="onContextMenuStart(item)">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <i class="material-icons">start</i>
+          <div fxLayout="column" fxLayoutAlign="start start" >
+            <span>Start</span>
+            <mat-card-subtitle class="light">Start app</mat-card-subtitle>
+          </div>
+        </div>
+      </button>
+      <button *ngIf="item.state == 'STARTED'" class="btnm" (click)="onContextMenuStop(item)">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <i class="material-icons">stop</i>
+          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="98%">
+            <span>Stop</span>
+            <mat-card-subtitle class="light">Stop app</mat-card-subtitle>
+          </div>
+        </div>
+      </button>
+      <button class="btnm" (click)="onContextMenuUpgrade(item)">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <i class="material-icons">autorenew</i>
+          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="98%">
+            <span>Upgrade</span>
+            <mat-card-subtitle class="light">Upgrade app</mat-card-subtitle>
+          </div>
+        </div>
+      </button>
+      <button class="btnm" (click)="onContextMenuReset(item)">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <i class="material-icons">undo</i>
+          <div fxLayout="column" fxLayoutAlign="start start" fxFlex="98%">
+            <span>Reset</span>
+            <mat-card-subtitle class="light">Reset app</mat-card-subtitle>
+          </div>
+        </div>
+      </button>
+      <button class="btnm" (click)="onContextMenuDelete(item)">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <i class="material-icons">delete</i>
+          <div fxLayout="column" fxLayoutAlign="start start" >
+            <span>Delete</span>
+            <mat-card-subtitle class="light">Delete app</mat-card-subtitle>
+          </div>
+        </div>
+      </button>
+    </div>
+  </ng-template>
+</mat-menu>
+<mat-menu #menu="matMenu" class="thin">
+  <app-install ></app-install>
+</mat-menu>
+<app-mat-spinner-overlay [loading]="isLoading"></app-mat-spinner-overlay>

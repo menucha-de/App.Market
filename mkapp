@@ -1,0 +1,24 @@
+#!/bin/bash
+
+env
+
+. /usr/share/mkapp/functions
+
+if [ "$PACKAGING" ]; then
+  rewrite
+  build -F
+
+  if [ "$PUBLISH" ]; then
+    publish_debs
+  fi
+fi
+
+if [ "$IMAGING" ]; then
+  init
+  update
+  setup market
+  sed -e "s/\\\${VARIANT}/${VARIANT}/g" apps.tpl > apps.json
+  echo "COPY apps.json /opt/peramic-app/" >> Dockerfile
+  finish '/opt/peramic-app' '["/opt/peramic-app/market", "-p", "80"]'
+  cat Dockerfile
+fi

@@ -1,0 +1,20 @@
+    <button mat-list-item class="btn" (click)="openAppDialog()">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <i class="material-icons"> cloud_queue</i>
+            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="98%">
+                <span>Cloud</span>
+                <mat-card-subtitle class="light">Select and install from cloud storage</mat-card-subtitle>
+            </div>
+        </div>
+    </button>
+    <button mat-list-item class="btn" (click)="openAddFilesDialog()" [disabled]="true">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <i class="material-icons">file_upload</i>
+            <div fxLayout="column" fxLayoutAlign="start start" fxFlex="98%">
+                <span>Local</span>
+                <mat-card-subtitle class="light">Upload and install a local file</mat-card-subtitle>
+            </div>
+        </div>
+    </button>
+
+<input #FileSelectInputDialog type="file" [hidden]="true" (change)="onFileAdded($event.target.files)" />

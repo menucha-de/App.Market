@@ -1,0 +1,276 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@peraMIC.io
+    name: Support
+  description: App market
+  title: App market
+  version: 0.0.1
+servers:
+- description: App market
+  url: https://{host-ip}/market/rest/apps
+  variables:
+    host-ip:
+      default: 10.10.10.10
+      description: The ip of the host
+security:
+- basic_auth: []
+tags:
+- name: Apps
+paths:
+  /{namespace}:
+    get:
+      operationId: GetAvailableApps
+      summary: Returns a list of available apps
+      parameters:
+      - description: Namespace
+        in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/App'
+          description: List of available apps
+      tags:
+      - Apps
+    post:
+      operationId: InstallApp
+      summary: Installs the specified app
+      parameters:
+      - description: Namespace
+        in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/App'
+      responses:
+        "204":
+          description: Installation process started successfully
+        "403":
+          description: Namespace "system" is forbidden for this request
+      tags:
+      - Apps
+    put:
+      operationId: UpgradeApps
+      summary: Upgrades the specified apps
+      parameters:
+      - description: Namespace
+        in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/App'
+      responses:
+        "204":
+          description: Upgrade process started successfully
+      tags:
+      - Apps
+  /{namespace}/installed:
+    get:
+      operationId: GetInstalledApps
+      summary: Returns a list of installed apps
+      parameters:
+      - description: Namespace
+        in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/App'
+          description: List of installed apps
+      tags:
+      - Apps
+  /{namespace}/{name}:
+    put:
+      operationId: updateApp
+      summary: Updates the specified App
+      parameters:
+      - description: Namespace
+        in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+      - description: App name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/App'
+      responses:
+        "204":
+          description: App configuration updated
+      tags:
+      - Apps
+    delete:
+      operationId: UninstallApp
+      summary: Uninstalls the specified app
+      parameters:
+      - name: namespace
+        description: Namespace
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: name
+        description: App name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: App uninstalled successfully
+      tags:
+      - Apps
+components:
+  schemas:
+    App:
+      description: App information
+      example:
+        id: gpio
+        name: gpio
+        label: GPIO
+        description: "GPIO Gateway"
+        icon: "swap_horiz"
+        image: peramic.azurecr.io/gpio:armhf-latest-ng
+        user: peramic
+        passwd: c2scU&*9DTLJzQd%
+        trust: true
+        state: STARTED
+        namespaces: null
+      properties:
+        container:
+          description: Container
+          $ref: '#/components/schemas/Container'
+        description:
+          description: App description
+          type: string
+        icon:
+          description: Name of the app icon
+          type: string
+      type: object
+    Container:
+      description: Container information
+      example:
+        id: gpio
+        name: gpio
+        label: GPIO
+        image: peramic.azurecr.io/gpio:armhf-latest-ng
+        user: peramic
+        passwd: c2scU&*9DTLJzQd%
+        trust: true
+        state: STARTED
+        namespaces: null
+      properties:
+        id:
+          description: Container ID 
+          type: string
+        name:
+          description: App name
+          type: string
+        label:
+          description: App label
+          type: string
+        image:
+          description: Location of the apps image file
+          type: string
+        user:
+          description: Username for repository access
+          type: string
+        passwd:
+          description: Password for repository access
+          type: string
+        trust:
+          description: Trust
+          type: boolean
+        state:
+          description: Container state
+          enum:
+          - STARTED
+          - STOPPED
+          - UPGRADED
+          type: string
+        namespaces:
+          description: Namespace
+          type: array
+          items:
+            type: string
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+        mounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mount'
+        isActive:
+          type: boolean
+      type: object
+    Device:
+      description: Device
+      example:
+        path: /dev/bus/usb/002/003
+      properties:
+        path:
+          description: Path
+          type: string
+      type: object
+    Mount:
+      description: Mount
+      example:
+        type: mounttype
+        source: mountsource
+        destination: mountdestination
+        options: mountoptions
+      properties:
+        type:
+          description: Mount type
+          type: string
+        source:
+          description: Mount source
+          type: string
+        destination:
+          description: Mount destination
+          type: string
+        options:
+          description: Mount options
+          type: string
+      type: object
+  securitySchemes:
+    basic_auth:
+      scheme: basic
+      type: http
