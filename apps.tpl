@@ -1,43 +1,5 @@
 {
     "default": {
-        "gpio": {
-            "name": "gpio",
-            "label": "GPIO",
-            "description": "The best GPIO Gateway",
-            "icon": "gpio",
-            "image": "ghcr.io/peramic/gpio:latest",
-            "trust": true,
-            "state": "STARTED",
-            "devices": [
-                {
-                    "path": "/dev/mica_gpio"
-                }
-            ],
-            "mounts": [
-                {
-                    "source": "conf",
-                    "destination": "/opt/peramic-app/conf"
-                }
-            ]
-        },
-        "modbus": {
-            "name": "modbus",
-            "label": "Modbus",
-            "description": "Modbus Gateway",
-            "icon": "modbus_gw",
-            "image": "ghcr.io/peramic/modbus-gateway:latest",
-            "trust": true,
-            "state": "STARTED"
-        },
-        "opcua": {
-            "name": "opcua",
-            "label": "OPC-UA",
-            "description": "OPC-UA Gateway",
-            "icon": "opcua_gw",
-            "image": "ghcr.io/peramic/opcua-gateway:latest",
-            "trust": true,
-            "state": "STARTED"
-        },
         "rfid": {
             "name": "rfid",
             "label": "RFID",
@@ -65,48 +27,23 @@
                 }
             ]
         },
-        "euromap15": {
-            "name": "euromap15",
-            "label": "Euromap15",
-            "description": "Euromap15 Gateway",
-            "icon": "euromap",
-            "image": "ghcr.io/peramic/euromap15:latest",
+        "gpio": {
+            "name": "gpio",
+            "label": "GPIO",
+            "description": "GPIO Monitor",
+            "icon": "gpio",
+            "image": "ghcr.io/peramic/gpio:latest",
             "trust": true,
             "state": "STARTED",
-            "mounts": [
+            "devices": [
                 {
-                    "source": "conf",
-                    "destination": "/opt/havis-apps/conf"
+                    "path": "/dev/mica_gpio"
                 }
-            ]
-        },
-        "euromap63": {
-            "name": "euromap63",
-            "label": "Euromap63",
-            "description": "Euromap63 Gateway",
-            "icon": "euromap",
-            "image": "ghcr.io/peramic/euromap63:latest",
-            "trust": true,
-            "state": "STARTED",
+            ],
             "mounts": [
                 {
                     "source": "conf",
-                    "destination": "/opt/havis-apps/conf"
-                }
-            ]
-        },
-        "cloud-integration": {
-            "name": "cloud-integration",
-            "label": "Cloud",
-            "description": "Azure Cloud Integration",
-            "icon": "integration",
-            "image": "ghcr.io/peramic/cloud-integration:latest",
-            "trust": true,
-            "state": "STARTED",
-            "mounts": [
-                {
-                    "source": "conf",
-                    "destination": "/opt/havis-apps/conf"
+                    "destination": "/opt/peramic-app/conf"
                 }
             ]
         }
