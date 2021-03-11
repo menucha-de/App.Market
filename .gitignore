@@ -1,7 +1,6 @@
 log.db
 /App.Market
 /main
-/market
 
 # Binaries for programs and plugins
 *.exe
