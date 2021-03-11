@@ -3,7 +3,7 @@
         "gpio": {
             "name": "gpio",
             "label": "GPIO",
-            "description": "GPIO Gateway",
+            "description": "The best GPIO Gateway",
             "icon": "gpio",
             "image": "ghcr.io/peramic/gpio:latest",
             "trust": true,
