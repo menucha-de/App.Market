@@ -5,7 +5,7 @@
             "label": "RFID",
             "description": "RFID Apps",
             "icon": "rfid",
-            "image": "ghcr.io/peramic/apps:latest",
+            "image": "ghcr.io/menucha-de/apps:latest",
             "trust": true,
             "state": "STARTED",
             "devices": [
@@ -32,7 +32,7 @@
             "label": "GPIO",
             "description": "GPIO Monitor",
             "icon": "gpio",
-            "image": "ghcr.io/peramic/gpio:latest",
+            "image": "ghcr.io/menucha-de/gpio:latest",
             "trust": true,
             "state": "STARTED",
             "devices": [
@@ -43,7 +43,7 @@
             "mounts": [
                 {
                     "source": "conf",
-                    "destination": "/opt/peramic-app/conf"
+                    "destination": "/opt/menucha-de/conf"
                 }
             ]
         }
@@ -54,7 +54,7 @@
             "label": "Runtime",
             "description": "Runtime",
             "icon": "settings_applications",
-            "image": "ghcr.io/peramic/runtime:${VARIANT}-latest",
+            "image": "ghcr.io/menucha-de/runtime:${VARIANT}-latest",
             "trust": true,
             "state": "UPGRADED"
         },
@@ -63,7 +63,7 @@
             "label": "Market",
             "description": "Market",
             "icon": "shopping_basket",
-            "image": "ghcr.io/peramic/market:${VARIANT}-latest",
+            "image": "ghcr.io/menucha-de/market:${VARIANT}-latest",
             "trust": true,
             "state": "STARTED"
         },
@@ -72,13 +72,13 @@
             "label": "Auth",
             "description": "Auth",
             "icon": "login",
-            "image": "ghcr.io/peramic/auth:latest",
+            "image": "ghcr.io/menucha-de/auth:latest",
             "trust": true,
             "state": "STARTED",
             "mounts": [
                 {
                     "source": "conf",
-                    "destination": "/opt/peramic-app/conf"
+                    "destination": "/opt/menucha-de/conf"
                 }
             ]
         },
@@ -87,7 +87,7 @@
             "label": "Httpd",
             "description": "Httpd",
             "icon": "http",
-            "image": "ghcr.io/peramic/httpd:latest",
+            "image": "ghcr.io/menucha-de/httpd:latest",
             "trust": true,
             "namespaces": [{"type" : "network"}],
             "state": "STARTED"
@@ -97,7 +97,7 @@
             "label": "Log",
             "description": "Logging",
             "icon": "opcua_gw",
-            "image": "ghcr.io/peramic/log:latest",
+            "image": "ghcr.io/menucha-de/log:latest",
             "trust": true,
             "state": "STARTED"
         },
@@ -106,7 +106,7 @@
             "label": "MQTT",
             "description": "MQTT broker",
             "icon": "wifi_tethering",
-            "image": "ghcr.io/peramic/mqtt:latest",
+            "image": "ghcr.io/menucha-de/mqtt:latest",
             "trust": true,
             "mounts": [
                 {
@@ -121,7 +121,7 @@
             "label": "VPN",
             "description": "OpenVPN",
             "icon": "verified_user",
-            "image": "ghcr.io/peramic/vpn:latest",
+            "image": "ghcr.io/menucha-de/vpn:latest",
             "trust": true,
             "namespaces": [{"type" : "network"}],
             "devices": [
@@ -132,7 +132,7 @@
             "mounts": [
                 {
                     "source": "conf",
-                    "destination": "/opt/peramic-app/conf"
+                    "destination": "/opt/menucha-de/conf"
                 }
             ],
             "capabilities": [

@@ -1,7 +1,7 @@
 /**
  * App market
- * OpenAPI spec version: 0.0.1
- * Contact: support@peraMIC.io
+ * OpenAPI spec version: 1.0.0
+ * Contact: info@menucha.de
  *
  */
 

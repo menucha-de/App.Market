@@ -1,14 +1,14 @@
 /*
  * App market
  *
- * API version: 0.0.1
- * Contact: support@peraMIC.io
+ * API version: 1.0.0
+ * Contact: info@menucha.de
  */
 
 package market
 
 import (
-	"github.com/peramic/utils"
+	"github.com/menucha-de/utils"
 )
 
 // Routes returns all of the api route for the Controller

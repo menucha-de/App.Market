@@ -1,8 +1,8 @@
 /*
  * App market
  *
- * API version: 0.0.1
- * Contact: support@peraMIC.io
+ * API version: 1.0.0
+ * Contact: info@menucha.de
  */
 
 package market
@@ -14,10 +14,10 @@ import (
 	"os"
 	"strings"
 
-	clc "github.com/peramic/App.Containerd/go"
-	"github.com/peramic/App.Containerd/go/containers"
-	"github.com/peramic/logging"
-	"github.com/peramic/utils"
+	"github.com/menucha-de/art/art"
+	"github.com/menucha-de/art/art/containers"
+	"github.com/menucha-de/logging"
+	"github.com/menucha-de/utils"
 )
 
 var log *logging.Logger = logging.GetLogger("market")
@@ -120,7 +120,7 @@ func installApp(namespace string, app App) error {
 		log.Error(err.Error())
 		return err
 	}
-	request := clc.ContainersRequest{
+	request := art.ContainersRequest{
 		Ns:         namespace,
 		Containers: []containers.Container{app.Container},
 	}
@@ -139,7 +139,7 @@ func installFromfile(namespace string, file string) error {
 	c := containers.Container{Name: file, Label: file, State: "STARTED"}
 	app := App{Container: c}
 
-	request := clc.ContainersRequest{
+	request := art.ContainersRequest{
 		Ns:         namespace,
 		Containers: []containers.Container{app.Container},
 	}
@@ -176,7 +176,7 @@ func updateApp(namespace string, app App) error {
 	cons := []containers.Container{}
 	cons = append(cons, c)
 
-	request := clc.ContainersRequest{
+	request := art.ContainersRequest{
 		Ns:         namespace,
 		Containers: cons,
 	}
@@ -211,7 +211,7 @@ func updateApp(namespace string, app App) error {
 
 // UninstallApp2 - Uninstalls the specified app
 func UninstallApp2(namespace string, name string) error {
-	request := clc.ContainersRequest{
+	request := art.ContainersRequest{
 		Ns: namespace,
 		ID: name}
 	var response int
@@ -238,7 +238,7 @@ func getUpdates(namespace string, username string, password string) ([]App, erro
 
 		cons := []containers.Container{}
 		cons = append(cons, app.Container)
-		request := clc.ContainersRequest{
+		request := art.ContainersRequest{
 			Ns:         namespace,
 			Containers: cons}
 

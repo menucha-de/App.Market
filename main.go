@@ -1,8 +1,8 @@
 /*
  * App market
  *
- * API version: 0.0.1
- * Contact: support@peraMIC.io
+ * API version: 1.0.0
+ * Contact: info@menucha.de
  */
 
 package main
@@ -13,10 +13,10 @@ import (
 	"html"
 	"net/http"
 
-	"github.com/peramic/logging"
-	"github.com/peramic/utils"
+	"github.com/menucha-de/logging"
+	"github.com/menucha-de/utils"
 
-	"github.com/peramic/App.Market/market"
+	"github.com/menucha-de/App.Market/market"
 )
 
 var log *logging.Logger = logging.GetLogger("market")

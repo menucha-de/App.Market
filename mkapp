@@ -18,7 +18,7 @@ if [ "$IMAGING" ]; then
   update
   setup market
   sed -e "s/\\\${VARIANT}/${VARIANT}/g" apps.tpl > apps.json
-  echo "COPY apps.json /opt/peramic-app/" >> Dockerfile
-  finish '/opt/peramic-app' '["/opt/peramic-app/market", "-p", "80"]'
+  echo "COPY apps.json /opt/menucha-de/" >> Dockerfile
+  finish '/opt/menucha-de' '["/opt/menucha-de/market", "-p", "80"]'
   cat Dockerfile
 fi

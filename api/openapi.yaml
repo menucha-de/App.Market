@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
   contact:
-    email: support@peraMIC.io
+    email: info@menucha.de
     name: Support
   description: App market
   title: App market
-  version: 0.0.1
+  version: 1.0.0
 servers:
 - description: App market
   url: https://{host-ip}/market/rest/apps
@@ -166,9 +166,9 @@ components:
         label: GPIO
         description: "GPIO Gateway"
         icon: "swap_horiz"
-        image: peramic.azurecr.io/gpio:armhf-latest-ng
-        user: peramic
-        passwd: c2scU&*9DTLJzQd%
+        image: ghcr.io/menucha-de/gpio:latest
+        user: menucha-de
+        passwd: secret
         trust: true
         state: STARTED
         namespaces: null
@@ -189,9 +189,9 @@ components:
         id: gpio
         name: gpio
         label: GPIO
-        image: peramic.azurecr.io/gpio:armhf-latest-ng
-        user: peramic
-        passwd: c2scU&*9DTLJzQd%
+        image: ghcr.io/menucha-de/gpio:latest
+        user: menucha-de
+        passwd: secret
         trust: true
         state: STARTED
         namespaces: null

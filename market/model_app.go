@@ -1,14 +1,14 @@
 /*
  * App market
  *
- * API version: 0.0.1
- * Contact: support@peraMIC.io
+ * API version: 1.0.0
+ * Contact: info@menucha.de
  */
 
 package market
 
 import (
-	"github.com/peramic/App.Containerd/go/containers"
+	"github.com/menucha-de/art/art/containers"
 )
 
 // App - App information
